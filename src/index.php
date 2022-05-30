@@ -34,10 +34,13 @@
                 <h5>Masukkan Data dan Pilih Produk</h5>
                 <form>
                     <div class="mb-3">
-                        <label for="name" class="px-3"><h6>Nama</h6></label>
+                        <label for="name" class="px-3">
+                            <h6>Nama</h6>
+                        </label>
                         <input type="text" class="form-control" id="name" autocomplete="off" aria-describedby="nameMessage">
                         <div id="nameMessage" class="form-text"></div>
                     </div>
+
                     <div id="dynamicForm">
                         <div class="row">
                             <div class="col-9 px-4">
@@ -46,7 +49,7 @@
                             <div class="col-2 text-center"><h6>Jumlah</h6></div>
                             <div class="col-1"></div>
                         </div>
-                        <div class="row mb-3" id="row_0">
+                        <div class="row mb-3 " id="row_0">
                             <div class="col-9">
                                 <select id="select_0" class="form-select">
                                     <option value="" disabled selected hidden>Pilih produk</option>
@@ -70,6 +73,7 @@
                             </div>
                         </div>
                     </div>
+
                     <button type="submit" class="btn btn-primary">PESAN</button>
                 </form>
             </div>
@@ -90,6 +94,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
         // Kamus variabel
@@ -123,6 +128,10 @@
                 $("#buyer").text(this.value);
             });
 
+            $(".form-select").click(function() {
+                
+            });
+
             $(document).on("change", ".form-select", function() {
                 for(let i in PD){
                     PD[i]['selected'] = false;
@@ -132,8 +141,10 @@
                 for(let i=0; i<PC; i++){
                     PD[SP[i].value]['selected'] = true;
                 }
+
                 let RO = [];
                 let WD = [];
+
                 for(let i=0; i<PC; i++){
                     for(let j=1; j<SP[i].childElementCount; j++){
                         if( PD[SP[i].children[j].value]['selected'] && !SP[i].children[j].selected){
@@ -152,6 +163,7 @@
                         }   
                     }
                 }
+
                 for(let i=0; i<PC; i++){
                     let CO = [];
                     for(let j=0; j<SP[i].childElementCount; j++){
@@ -168,9 +180,9 @@
                 }
                 let X   = $(this).attr('id').split('_')[1];
                 let AQ  = PD[this.value]['qty'];
-                let TQ  = $( "#qty_"+X );
+                let TQ  = $( "#qty_"+X ); 
                 let TR  = $( "#row_"+X );
-                let AB  = $( "#addBtn_"+X );
+                let AB  = $( "#addBtn_"+X ); "adBTn_0"
                 let DB  = $( "#deleteBtn_"+X );
                 TQ.attr("disabled") ? TQ.attr("disabled", false) : '';
                 TQ.attr("max",AQ);
@@ -207,7 +219,7 @@
                 $("#addBtn_"+X+"").addClass("d-none");
                 $("#deleteBtn_"+X+"").removeClass("d-none");
                 index++;
-                let option = ``;
+                let option = ``; 
                 let F = 0;
                 for (let i=0; i<5; i++){
                     if(!(PD[i]['selected'])){
@@ -234,6 +246,29 @@
                             +`</button>`
                         +`</div>`
                     +`</div>`
+                    // <div class="row mb-3" id="row_0">
+                    //     <div class="col-9">
+                    //         <select id="select_0" class="form-select">
+                    //             <option value="" disabled selected hidden>Pilih produk</option>
+                    //             <option value="0">Jet Tempur</option>
+                    //             <option value="1">Nuklir Hiroshima</option>
+                    //             <option value="2">Infinity Stones</option>
+                    //             <option value="3">Burj Khalifa</option>
+                    //             <option value="4">Rudal Hipersonik</option>
+                    //         </select>
+                    //     </div>
+                    //     <div class="col-2">
+                    //         <input id="qty_0" type="number" min="0" class="xyhgs form-control text-center" autocomplete="off" aria-describedby="message0" disabled>
+                    //     </div>
+                    //     <div class="col-1">
+                    //         <button id="deleteBtn_0" class="d-none deleteBtn btn btn-danger fw-bolder">
+                    //             <i class="fa-solid fa-x"></i>
+                    //         </button>
+                    //         <button id="addBtn_0" class="d-none addBtn btn btn-success fw-bolder">
+                    //             <i class="fa-solid fa-plus"></i>
+                    //         </button>
+                    //     </div>
+                    // </div>
                 );
             });
 
